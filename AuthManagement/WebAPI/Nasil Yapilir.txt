@@ -1,0 +1,118 @@
+﻿
+4.Hafta 3. ödev
+
+Katmmanları lusturdum : gitignore u terminalle oluştur
+
+
+		----
+		businessta boş manager ve sreviceleri oluştur ve bağla
+		entitieste concrete ve DTOs klasörler aç
+		bunları Ientitiye bağla-core entities
+		ilk dto yu oluştur
+		--
+		data acces abstarct ve concrete
+		coreda data access-abstract ve concrete
+					abstarctta IBaserepository
+					concretede efentityrepositorybase
+					bunun methodalarini doldur
+					isim kontrolü yap repobase doğru mu diye
+		dataaccess concretede  context ve ef klasörleri
+					efcoredbcontext
+				ef klasörnde dalları yap
+				dalları interfacelerine bağla
+			
+				data abstractaki ıdalları yap
+				bu ıbaserepository iseter core da onu yap
+		
+		core
+			efentityrepobase kodları nuget ister-kızanları çöz
+
+		data accces ef..dalların uzantılarını yap -kızanları düzelt
+		-
+		Context e gel ve sen bir db contextsin de
+		-
+
+
+		sırada
+
+		controller lar
+				controlelr olstur
+					accountdan  bilgiler ile giris olacak
+							ben şöyle düşündüm
+								2 farklı giriş seçeneği sunalım
+								login wtihmail=>usermailLoginDto
+								login withusername=>usenameLoginDto
+
+				methodlar için services
+							
+							burada kaldık-hocanın videolarını izle notlarını worde yaz
+							ödev yetişir
+
+--
+
+								Auth katmanınmız sadece login ve register yapsın
+									- auth controller oluştur
+									-login ve register methodlar
+									-IAuthservice ve Authmanager oluştur
+									- controllerda hangi dto olduğunu yaz
+									-controller service methodlarını isteyecek -> Auth Service methodlarını  oluştur
+									-service methodlarını managerlere boş da olsa implemente et
+										-bunun için result classları oluşturman lazım=>core utilities results-ok
+										-servicedeki acces token için jwt implementasyonu gerekli
+										-core->utilities->security->hashing ve encryption
+																	encryption: içerisincesecurity key helper(nuget:modeltokens istiyor) ve signingcredentialshelper
+																	hashing:=> hashing helper hazır kodlarımı kkullandım
+										-core.entities.concrete'e gel
+																her ne kadar bu projede dbde claimlerimiz olamayaccak sa da 
+																	operationclaims & account (gereken şekilde düzenlendi) & accountoperationclaim
+																	şimdi utilities decurity jwt ye geç
+														
+										-core utilities-	SECURİTY'de JWT klasörü=> accesstoken clası ve Itokenhelper interfacei açalım
+																					daha sonra -  önce token options oluştur ve kodla- daha sonra jwt helperi ıoluştur ve kodla
+																						Dikkat önce tokenoptionsun olmasi sart
+																							sonra  jwthelperda once accountu coz-ve tum user yazan yerleri account ile degis
+																							IConfiguration'u microsoft ile çöz-nuget indir
+																							jwt helper içerisindeki nota da bak
+																							seucritykeyhelper'ı çöz-dikkat  security.encryption'umuz ile çöz
+																							JwtSecurityTokenHandler =>System.IdentityModel.Tokens.Jwt yukle
+																							-
+																							gerikalanlarin cozumu için
+
+																							core extensionsta claimextension ve claim principal extension
+																							-claim extensionda gerekli yerleri çöz
+																							-ClaimsPrincipalExtensions u da aynı şekilde
+																							--
+																							jwt helper a don ve geri kalanlari coz
+																							--
+
+
+
+
+								Account katmanında login yapmış kişi aynı user name e yeni bir account kaydetmesin
+								account katmanında delete account- ve uppdate account ve change passsword olsun
+										bunlarda change için emaili direkt alsın yani jwtden veya authdan vs çekelim
+										update için user bilgileri direkt gelsin-update de sifre olmasın
+										bunlarda Authorize attribute kullanabilirmiyiz?
+								
+								MUTLAKA HOCA GİBİ EXTENSİONLARI AYRI BİR YERE AL HOCADAKİ GİBİ YAP
+
+								userclaims-jjwt vs recapteki  gibi yap
+								auth attributeları da aynı şekilde
+
+								şimdilik rolünü belirtmeden düz authorize yapalım
+								 user id lerimizi claims nesnemizden alıp- sorgularda vs onu klllanmamızı istiyor
+
+								
+							ama register userregister dto ile userexist? kontrolü yapacak
+							regsterda accees token oluturacak
+
+
+							-
+							hocanın yaptığı gibi staruptaki methotları startupextension klasörü oluşturup ieçrisine atsak daha sade olur sanki
+
+							-
+								
+
+		mapping
+								
+
