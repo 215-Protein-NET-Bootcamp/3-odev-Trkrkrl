@@ -9,7 +9,7 @@ namespace WebAPI.Controllers
     [ApiController]
     public class AuthController : ControllerBase
     {
-        private IAuthService _authService;
+        IAuthService _authService;
 
         public AuthController(IAuthService authService)
         {
@@ -19,7 +19,7 @@ namespace WebAPI.Controllers
         [HttpPost("loginwithmail")]
         public ActionResult Login(AccountMailLoginDto accountMailLoginDto)
         {
-            var userToLogin = _authService.Login(accountMailLoginDto);
+            var userToLogin = _authService.LoginWithEmail(accountMailLoginDto);
             if (!userToLogin.Success)
             {
                 return BadRequest(userToLogin);
@@ -36,7 +36,7 @@ namespace WebAPI.Controllers
         [HttpPost("loginwithusername")]
         public ActionResult Login(AccountNameLoginDto accountNameLoginDto)
         {
-            var userToLogin = _authService.Login(accountNameLoginDto);
+            var userToLogin = _authService.LoginWithUserName(accountNameLoginDto);
             if (!userToLogin.Success)
             {
                 return BadRequest(userToLogin);

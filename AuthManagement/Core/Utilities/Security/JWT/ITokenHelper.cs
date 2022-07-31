@@ -14,6 +14,6 @@ namespace Core.Utilities.Security.JWT
         //api siteminde kullanıcı adı şifresi girildi
         //burada eğer doğruysa ilgili veritabanına gidicek ve bu kullanıcının
         //claimlerini bulucak,jwt üreticek
-        AccessToken CreateToken(Account account, List<OperationClaim> operationClaims);//bu account normal entities değil- coredan özel geliyor
+        AccessToken CreateToken(Account account);//bu account normal entities değil- coredan özel geliyor
     }
 }

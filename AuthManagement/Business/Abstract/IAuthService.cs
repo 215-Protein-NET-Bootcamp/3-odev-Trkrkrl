@@ -1,4 +1,6 @@
-﻿using Core.Utilities.Results;
+﻿using Core.Entities.Concrete;
+using Core.Utilities.Results;
+using Core.Utilities.Security.JWT;
 using Entities.Concrete;
 using Entities.DTOs;
 using System;
@@ -9,8 +11,8 @@ using System.Threading.Tasks;
 
 namespace Business.Abstract
 {
-    public interface IAuthService
-    {
+    
+    
         public interface IAuthService//Bu servis sayesinde sisteme giriş yapıcam veya  kayıt olucam
         {
             IDataResult<Account> Register(AccountForRegisterDto accountForRegisterDto, string password); //Kayıt operasyonu
@@ -21,5 +23,5 @@ namespace Business.Abstract
             IResult UserExists(string email);//Kullanıcı var mı
             IDataResult<AccessToken> CreateAccessToken(Account account);
         }
-    }
+    
 }

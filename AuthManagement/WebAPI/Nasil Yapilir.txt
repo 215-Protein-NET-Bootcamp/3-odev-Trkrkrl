@@ -88,6 +88,46 @@ Katmmanları lusturdum : gitignore u terminalle oluştur
 
 
 
+															auth controller:service kodları istiyor
+															dto lari ve entitileri ayarla
+
+															
+															
+															
+															
+													controllerınn bunla alakası yokmuş=>	iki kat interface olmuş 
+													ondan görmüyordu
+													businessta autofac map ekle ki adreslereini bulabilsinler
+															business dependency resolveer autofac autofac business module
+																bununn için autofac nuget-
+																autofac extra dynamic
+																gerekli yerleri coz
+																castle core u unutma
+																core utilities interceptors klasoru aç-3 ünü de ekle
+
+																auth manager kodları:
+																		 iki yere bağlılık vaar
+																		 Iaccoutservice ve IToken Helper
+																		 buradaki account core enttiesten geliyor
+																		 business a mesajla klasoru-mesjalari hazirla
+																account service	
+																account manager kodlarını yaz
+																account dal ile ilgili kodları yaz
+																account nesnesi sadece core daki
+																claimler sıkıntı çıkardı
+																jwt ye giitm- operation clailmle ilgili yerleri kaldırdım düz accounttan gelenleri claim yapacak sadece
+
+										
+										success hatası alıyorum-
+										startup u yapalım bi
+										CORE da ıoc vedependency resolver leri yaptım
+															login methodlarını düzenle
+
+															auth  service:access tokeni görmedi-jwt deydi bu
+													startupta-jwt ve dependency ile ilgili kısımları girince hata gittt
+													--burada kaldım- pperson serivceyi yap
+																		
+
 								Account katmanında login yapmış kişi aynı user name e yeni bir account kaydetmesin
 								account katmanında delete account- ve uppdate account ve change passsword olsun
 										bunlarda change için emaili direkt alsın yani jwtden veya authdan vs çekelim
@@ -95,6 +135,7 @@ Katmmanları lusturdum : gitignore u terminalle oluştur
 										bunlarda Authorize attribute kullanabilirmiyiz?
 								
 								MUTLAKA HOCA GİBİ EXTENSİONLARI AYRI BİR YERE AL HOCADAKİ GİBİ YAP
+								singletonları autofac ile recapteki gibi yap
 
 								userclaims-jjwt vs recapteki  gibi yap
 								auth attributeları da aynı şekilde

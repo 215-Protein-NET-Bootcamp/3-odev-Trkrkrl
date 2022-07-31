@@ -1,4 +1,5 @@
 ﻿using Business.Abstract;
+using Core.Entities.Concrete;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
@@ -15,36 +16,29 @@ namespace WebAPI.Controllers
             _accountService = accountService;
         }
 
-        [HttpGet("getall")]
-        public IActionResult GetAll()
+      
+        [HttpGet("getbymail")]
+        public IActionResult GetByMail(string email)
         {
-            var result = _accountService.GetAll();
+            var result = _accountService.GetByMail(email);
             if (result.Success)
             {
                 return Ok(result);
             }
             return BadRequest(result);
         }
-        [HttpGet("getbyid")]
-        public IActionResult GetById(int accountId)
+        [HttpGet("getbyusername")]
+        public IActionResult GetByUserName(string userName)
         {
-            var result = _accountService.GetById(accountId);
+            var result = _accountService.GetByUserName(userName);
             if (result.Success)
             {
                 return Ok(result);
             }
             return BadRequest(result);
         }
-        [HttpGet("getdetailsbyid")]
-        public IActionResult GetDetailsById(int accountId)
-        {
-            var result = _accountService.GetDetailsById(accountId);
-            if (result.Success)
-            {
-                return Ok(result);
-            }
-            return BadRequest(result);
-        }
+       
+        
 
         //post-add,update ,delete
         [HttpPost("add")]
