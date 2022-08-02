@@ -18,6 +18,7 @@ namespace Core.DataAccess.Abstract
         void Add(T entity);
         void Update(T entity);
         void Delete(T entity);
-    
+        bool Any(Expression<Func<T, bool>> exp);
+
     }
 }

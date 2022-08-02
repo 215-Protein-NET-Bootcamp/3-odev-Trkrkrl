@@ -1,5 +1,6 @@
 ﻿using Business.Abstract;
 using Core.Entities.Concrete;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
@@ -9,7 +10,7 @@ namespace WebAPI.Controllers
     [ApiController]
     public class AccountsController : ControllerBase
     {
-        IAccountService _accountService;
+        private readonly IAccountService _accountService;
 
         public AccountsController(IAccountService accountService)
         {
@@ -18,6 +19,7 @@ namespace WebAPI.Controllers
 
       
         [HttpGet("getbymail")]
+        [Authorize]
         public IActionResult GetByMail(string email)
         {
             var result = _accountService.GetByMail(email);
@@ -28,6 +30,7 @@ namespace WebAPI.Controllers
             return BadRequest(result);
         }
         [HttpGet("getbyusername")]
+        [Authorize]
         public IActionResult GetByUserName(string userName)
         {
             var result = _accountService.GetByUserName(userName);
@@ -42,9 +45,10 @@ namespace WebAPI.Controllers
 
         //post-add,update ,delete
         [HttpPost("add")]
-        public IActionResult Add(Account accountId)
+        [Authorize]
+        public IActionResult Add(Account account)
         {
-            var result = _accountService.Add(accountId);
+            var result = _accountService.Add(account);
             if (result.Success)
             {
                 return Ok(result);
@@ -53,9 +57,10 @@ namespace WebAPI.Controllers
         }
 
         [HttpPost("update")]
-        public IActionResult Update(Account accountId)
+        [Authorize]
+        public IActionResult Update(Account account)
         {
-            var result = _accountService.Update(accountId);
+            var result = _accountService.Update(account);
             if (result.Success)
             {
                 return Ok(result);
@@ -64,9 +69,10 @@ namespace WebAPI.Controllers
         }
 
         [HttpPost("delete")]
-        public IActionResult Delete(Account accountId)
+        [Authorize]
+        public IActionResult Delete(Account account)
         {
-            var result = _accountService.Delete(accountId);
+            var result = _accountService.Delete(account);
             if (result.Success)
             {
                 return Ok(result);

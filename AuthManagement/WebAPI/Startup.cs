@@ -19,6 +19,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using WebAPI.StartupExtension;
 
 namespace WebAPI
 {
@@ -36,10 +37,8 @@ namespace WebAPI
         {
 
             services.AddControllers();
-            services.AddSwaggerGen(c =>
-            {
-                c.SwaggerDoc("v1", new OpenApiInfo { Title = "WebAPI", Version = "v1" });
-            });
+           
+
             var tokenOptions = Configuration.GetSection("TokenOptions").Get<TokenOptions>();
             services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
 
@@ -62,6 +61,8 @@ namespace WebAPI
 
            }
            );
+
+            services.AddCustomizeSwagger();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

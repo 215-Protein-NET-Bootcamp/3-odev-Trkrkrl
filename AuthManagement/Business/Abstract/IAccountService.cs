@@ -11,12 +11,17 @@ namespace Business.Abstract
 {
     public interface IAccountService
     {
-        IDataResult<Account> GetByMail(string email);
-        IDataResult<Account> GetByUserName(string userName);
+        DataResult<Account> GetByMail(string email);
+        DataResult<Account> GetByUserName(string userName);
 
         
-        IResult Add(Account account);
+        Result Add(Account account);
+        
         //delete olmali mi?
+        Result Update(Account account);
+
+        Result Delete(Account account);
+
 
     }
 }

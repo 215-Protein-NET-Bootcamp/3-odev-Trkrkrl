@@ -4,6 +4,7 @@ using Core.Entities.Concrete;
 using Core.Utilities.Results;
 using Core.Utilities.Security.Hashing;
 using Core.Utilities.Security.JWT;
+using DataAccess.Abstract;
 using Entities.DTOs;
 using System;
 using System.Collections.Generic;
@@ -17,21 +18,23 @@ namespace Business.Concrete
     {
         private IAccountService _accountService;
         private ITokenHelper _tokenHelper;
+        private IAccountDal _accountDal;
 
-
-        public AuthManager(IAccountService accountService, ITokenHelper tokenHelper)
+       
+        public AuthManager(IAccountService accountService, ITokenHelper tokenHelper, IAccountDal accountDal)
         {
             _accountService = accountService;
             _tokenHelper = tokenHelper;
+            _accountDal = accountDal;
         }
 
 
 
 
-        public IDataResult<Account> Register(AccountForRegisterDto accountForRegisterDto, string password)
+        public DataResult<Account> Register(AccountForRegisterDto accountForRegisterDto)
         {
             byte[] passwordHash, passwordSalt;
-            HashingHelper.CreatePasswordHash(password, out passwordHash, out passwordSalt);
+            HashingHelper.CreatePasswordHash(accountForRegisterDto.Password, out passwordHash, out passwordSalt);
             var account = new Account//bu account core entitiesteki
             {
                 Email = accountForRegisterDto.Email,
@@ -47,7 +50,7 @@ namespace Business.Concrete
 
 
 
-        public IDataResult<Account> LoginWithEmail(AccountMailLoginDto accountMailLoginDto)
+        public DataResult<Account> LoginWithEmail(AccountMailLoginDto accountMailLoginDto)
         {
             var userToCheck = _accountService.GetByMail(accountMailLoginDto.Email);
             if (userToCheck.Data == null)
@@ -63,7 +66,7 @@ namespace Business.Concrete
             return new SuccessDataResult<Account>(userToCheck.Data, Messages.SuccessfulLogin);
         }
 
-        public IDataResult<Account> LoginWithUserName(AccountNameLoginDto accountNameLoginDto)
+        public DataResult<Account> LoginWithUserName(AccountNameLoginDto accountNameLoginDto)
         {
             var userToCheck = _accountService.GetByUserName(accountNameLoginDto.UserName);
             if (userToCheck.Data == null)
@@ -81,11 +84,16 @@ namespace Business.Concrete
 
        
 
-        public IResult UserExists(string email)
+        public Result UserExists(string email)
         {
-            throw new NotImplementedException();//şimdilik boş kalsın-business rules a gidiyor bunun ucu
+            var result = _accountDal.Any(x => x.Email == email);
+            if (!result)
+            {
+                return new ErrorResult();
+            }
+            return new SuccessResult();
         }
-        public IDataResult<AccessToken> CreateAccessToken(Account account)
+        public DataResult<AccessToken> CreateAccessToken(Account account)
         {
             
             var accessToken = _tokenHelper.CreateToken(account);

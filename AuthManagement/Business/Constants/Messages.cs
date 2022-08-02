@@ -27,6 +27,9 @@ namespace Business.Constants
         public static string AccountNotFound = "Account Bulunamadı";
         public static string AccountRegistered = "Account kaydedildi";
         public static string AccessTokenCreated = "AccessToken Oluşturuldu";
+        public static string AccountDeleted = "Account Silindi";
+        public static string AccountUpdated = "Account Güncellendi";
+
 
         public static string PasswordError = "Hatalı şifre";
     }

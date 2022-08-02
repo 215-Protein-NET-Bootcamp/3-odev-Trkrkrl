@@ -25,7 +25,15 @@ namespace Core.DataAccess.Concrete.EntityFramework
         }
     }
 
-    public void Delete(TEntity entity)
+        public bool Any(Expression<Func<TEntity, bool>> exp)
+        {
+            using (TContext context = new TContext())
+            {
+                return context.Set<TEntity>().Any(exp);
+            }
+        }
+
+        public void Delete(TEntity entity)
     {
         using (TContext context = new TContext())
         {

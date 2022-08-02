@@ -9,7 +9,7 @@ namespace WebAPI.Controllers
     [ApiController]
     public class AuthController : ControllerBase
     {
-        IAuthService _authService;
+       IAuthService _authService;
 
         public AuthController(IAuthService authService)
         {
@@ -54,13 +54,14 @@ namespace WebAPI.Controllers
         [HttpPost("register")]
         public ActionResult Register(AccountForRegisterDto accountForRegisterDto)
         {
-            var userExists = _authService.UserExists(accountForRegisterDto.Email);
+
+               /* var userExists = _authService.UserExists(accountForRegisterDto.Email);
             if (!userExists.Success)
             {
                 return BadRequest(userExists.Message);
-            }
+            }*/
 
-            var registerResult = _authService.Register(accountForRegisterDto, accountForRegisterDto.Password);
+            var registerResult = _authService.Register(accountForRegisterDto);
             var result = _authService.CreateAccessToken(registerResult.Data);
             if (result.Success)
             {

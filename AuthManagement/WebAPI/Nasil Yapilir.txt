@@ -125,7 +125,19 @@ Katmmanları lusturdum : gitignore u terminalle oluştur
 
 															auth  service:access tokeni görmedi-jwt deydi bu
 													startupta-jwt ve dependency ile ilgili kısımları girince hata gittt
-													--burada kaldım- pperson serivceyi yap
+													---
+													person entity-controller-dal service -manager
+															entitisini yapmışız
+															controllerda gerekli methodları yaz
+															service de yaz
+															servisi managera implemente et
+															manager koldarını da yazdım
+
+
+
+
+											
+
 																		
 
 								Account katmanında login yapmış kişi aynı user name e yeni bir account kaydetmesin
@@ -137,10 +149,55 @@ Katmmanları lusturdum : gitignore u terminalle oluştur
 								MUTLAKA HOCA GİBİ EXTENSİONLARI AYRI BİR YERE AL HOCADAKİ GİBİ YAP
 								singletonları autofac ile recapteki gibi yap
 
-								userclaims-jjwt vs recapteki  gibi yap
-								auth attributeları da aynı şekilde
+								db? -appsettings-
+								migration için design ve tools nugetleri kurdum dataaccesse
+								dbsetleri düzgün yapmak lazım ki migration yapabilelim
+								contexttte diğer ödevdeki db bağlantı kodlarını al
+								contextte brtakım nugtler gerekli
+								sql
+								npgsql
+								npgsql.efcore.postgresql
+								extension.config
+								efcore.sqlserver
 
-								şimdilik rolünü belirtmeden düz authorize yapalım
+								--
+								persondaki get moethodu iççin dto -oluştur ve dalda gerekli methodları yap
+								getdetails by id için hem ıdal hem efdal a methodları yaz
+								
+					!!! controllerda bu method acountid'yi otomatik almalı			GetAllPersonsByAccountId
+					 HATA- service ve managerdeki Idata resultları data resulta- IResultları resulta çevirdim
+					 succes ve message erroralr düzeldi
+
+					 bir migration denemsi yapalım-olmadı context istiyor
+					 contextteki eksiği ve apsetting hatasını düzelttim
+					 ilk mig başarılı
+
+
+					 varmı kkontrolü için Ibase e any methodu
+					 -
+					 autofac mapping singletonlarinin calismai için program cs
+					 -
+					 TEST 13 TE KALDIK- AUTH REGİSTER YAPAMIYOZ- OBJECT RWF
+					EFERENCE NOT SETO TO NUL VS HATASI VERİYOR
+					bu kontrolü icabında iptal edecezS
+					test17- userexist kontrolünü controllerden akldırınca düzeldi
+
+					register yapinca token ve mesaj dönüyor
+					-
+
+					-bize account ve person apilerinde authorize attribute lazım
+					-swaggerda token kısmı oluşturup oluşan tokeni buradan vermemiz lazım
+						bunun için startup extension dosyası
+						tmm
+					şimdi buton oluştu-login jwt oluşturduğu keyi girdim account çektim-
+					logout yaptım account istedim vermedi-ok authorize çalışıyor
+
+
+
+					personda personid ile çekmek çalışıyor
+					account id ile getall person calisiyor 
+					person add calisiyor ama-> account idyi ben giriyiom!!!!!!!!!!!!!
+
 								 user id lerimizi claims nesnemizden alıp- sorgularda vs onu klllanmamızı istiyor
 
 								

@@ -15,13 +15,13 @@ namespace Business.Abstract
     
         public interface IAuthService//Bu servis sayesinde sisteme giriş yapıcam veya  kayıt olucam
         {
-            IDataResult<Account> Register(AccountForRegisterDto accountForRegisterDto, string password); //Kayıt operasyonu
-            IDataResult<Account> LoginWithEmail(AccountMailLoginDto accountMailLoginDto);//mail ile Giriş operasyonu
-            IDataResult<Account> LoginWithUserName(AccountNameLoginDto accountNameLoginDto);//username ile Giriş operasyonu
+            DataResult<Account> Register(AccountForRegisterDto accountForRegisterDto); //Kayıt operasyonu
+            DataResult<Account> LoginWithEmail(AccountMailLoginDto accountMailLoginDto);//mail ile Giriş operasyonu
+            DataResult<Account> LoginWithUserName(AccountNameLoginDto accountNameLoginDto);//username ile Giriş operasyonu
 
 
-            IResult UserExists(string email);//Kullanıcı var mı
-            IDataResult<AccessToken> CreateAccessToken(Account account);
+            Result UserExists(string email);//Kullanıcı var mı
+            DataResult<AccessToken> CreateAccessToken(Account account);
         }
     
 }

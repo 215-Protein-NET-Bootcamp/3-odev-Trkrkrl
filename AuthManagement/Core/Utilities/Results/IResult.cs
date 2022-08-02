@@ -10,6 +10,7 @@ namespace Core.Utilities.Results
     {
         public interface IResult//Result ve IDataResultta kullanılacak
         {//Temel voidlerimiz için başlangıç,  service kodlarında voidler IResult ile değişecek
+
             bool Success { get; }
             string Message { get; }
         }

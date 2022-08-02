@@ -1,4 +1,5 @@
 ﻿using Business.Abstract;
+using Business.Constants;
 using Core.Entities.Concrete;
 using Core.Utilities.Results;
 using DataAccess.Abstract;
@@ -13,25 +14,35 @@ namespace Business.Concrete
 {
     public class AccountManager : IAccountService
     {
-        IAccountDal _accountDal;
+        private readonly IAccountDal _accountDal;
 
         public AccountManager(IAccountDal accountDal)
         {
             _accountDal = accountDal;
         }
 
-        public IResult Add(Account account)
+        public Result Add(Account account)
         {
             _accountDal.Add(account);
             return new SuccessResult();
         }
 
-        public IDataResult<Account> GetByMail(string email)
+        public Result Delete(Account account)
+        {
+            return new Result(true, Messages.AccountDeleted);
+        }
+        public Result Update(Account account)
+        {
+            _accountDal.Update(account);
+            return new Result(true);
+        }
+
+        public DataResult<Account> GetByMail(string email)
         {
             return new SuccessDataResult<Account>(_accountDal.GetAll(u => u.Email == email).FirstOrDefault());
         }
 
-        public IDataResult<Account> GetByUserName(string userName)
+        public DataResult<Account> GetByUserName(string userName)
         {
             return new SuccessDataResult<Account>(_accountDal.GetAll(u => u.UserName == userName).FirstOrDefault());
         }
