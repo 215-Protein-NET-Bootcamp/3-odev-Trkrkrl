@@ -198,19 +198,19 @@ Katmmanları lusturdum : gitignore u terminalle oluştur
 					account id ile getall person calisiyor 
 					person add calisiyor ama-> account idyi ben giriyiom!!!!!!!!!!!!!
 
-								 user id lerimizi claims nesnemizden alıp- sorgularda vs onu klllanmamızı istiyor
+					? yapabilirsen bu - personcontrollerdaki string int uyuşmazlığı
+								 bu sayede claimsten aldığımız veiriykullanaibliriz
+					core jwt de en altta claims in elemanlarında add new ile düz accountid bilgisi girdik
+					artık tokenda bu bilgi var
+					person add de kullandık
+					person getallbyaccount id de id girmeden jwt den alıyor ok bu da tamam
 
 								
-							ama register userregister dto ile userexist? kontrolü yapacak
-							regsterda accees token oluturacak
+							
 
 
 							-
 							hocanın yaptığı gibi staruptaki methotları startupextension klasörü oluşturup ieçrisine atsak daha sade olur sanki
 
-							-
-								
-
-		mapping
-								
+			
 

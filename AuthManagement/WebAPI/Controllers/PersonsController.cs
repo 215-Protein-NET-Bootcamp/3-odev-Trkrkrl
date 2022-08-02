@@ -3,6 +3,8 @@ using Entities.Concrete;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using System;
+using System.Security.Claims;
 
 namespace WebAPI.Controllers
 {
@@ -23,6 +25,9 @@ namespace WebAPI.Controllers
         [Authorize]
         public IActionResult GetAll(int accountId)
         {
+            var clm = (User.Identity as ClaimsIdentity).FindFirst("AccountId").Value;
+            accountId = Int32.Parse(clm);
+
             var result = _personService.GetAllPersonsByAccountId(accountId);// bu account id yi jsondan otomatik almalı- yani giriş yapılı kullanıcıdan
             if (result.Success)
             {
@@ -48,6 +53,8 @@ namespace WebAPI.Controllers
         [Authorize]
         public IActionResult Add(Person  person)
         {
+            var clm = (User.Identity as ClaimsIdentity).FindFirst("AccountId").Value;
+            person.AccountId = Int32.Parse(clm);
             var result = _personService.Add(person);
             if (result.Success)
             {
@@ -61,6 +68,8 @@ namespace WebAPI.Controllers
         [Authorize]
         public IActionResult Update(Person person)
         {
+            var clm = (User.Identity as ClaimsIdentity).FindFirst("AccountId").Value;
+            person.AccountId = Int32.Parse(clm);
             var result = _personService.Update(person);
             if (result.Success)
             {
@@ -74,6 +83,8 @@ namespace WebAPI.Controllers
         [Authorize]
         public IActionResult Delete(Person person)
         {
+            var clm = (User.Identity as ClaimsIdentity).FindFirst("AccountId").Value;
+            person.AccountId = Int32.Parse(clm);
             var result = _personService.Delete(person);
             if (result.Success)
             {

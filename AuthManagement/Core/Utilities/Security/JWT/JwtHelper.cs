@@ -68,6 +68,8 @@ namespace Core.Utilities.Security.JWT
             claims.AddEmail(account.Email);
             claims.AddName($"{account.Name}");
             
+            claims.Add(new Claim("AccountId", account.AccountId.ToString()));
+            
 
             return claims;
         }
