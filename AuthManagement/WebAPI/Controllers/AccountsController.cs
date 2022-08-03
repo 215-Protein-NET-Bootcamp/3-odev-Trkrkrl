@@ -1,8 +1,11 @@
 ﻿using Business.Abstract;
 using Core.Entities.Concrete;
+using Entities.DTOs;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using System;
+using System.Security.Claims;
 
 namespace WebAPI.Controllers
 {
@@ -48,6 +51,7 @@ namespace WebAPI.Controllers
         [Authorize]
         public IActionResult Add(Account account)
         {
+
             var result = _accountService.Add(account);
             if (result.Success)
             {
@@ -56,11 +60,14 @@ namespace WebAPI.Controllers
             return BadRequest(result);
         }
 
-        [HttpPost("update")]
+        [HttpPost("updatepassword")]
         [Authorize]
-        public IActionResult Update(Account account)
+        public IActionResult Update(AccountPasswordUpdateDTO accountPasswordUpdateDTO)
         {
-            var result = _accountService.Update(account);
+            var clm = (User.Identity as ClaimsIdentity).FindFirst("AccountId").Value;
+            int accountId = Int32.Parse(clm);
+
+            var result = _accountService.UpdatePassword(accountPasswordUpdateDTO, accountId);
             if (result.Success)
             {
                 return Ok(result);

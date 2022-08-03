@@ -1,5 +1,6 @@
 ﻿using Core.Entities.Concrete;
 using Core.Utilities.Results;
+using Entities.DTOs;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -21,7 +22,7 @@ namespace Business.Abstract
         Result Update(Account account);
 
         Result Delete(Account account);
-
-
+        Result UpdatePassword(AccountPasswordUpdateDTO accountPasswordUpdateDTO, int accountId);
+       
     }
 }

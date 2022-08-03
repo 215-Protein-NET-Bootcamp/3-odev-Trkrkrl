@@ -31,6 +31,10 @@ namespace Business.Constants
         public static string AccountUpdated = "Account Güncellendi";
 
 
-        public static string PasswordError = "Hatalı şifre";
+        public static string PasswordError = "Hatalı şifre"; 
+        public static string OldPasswordIsWrong = "Eski şifreniz hatalı";
+        public static string PasswordUpdated = "Şifreniz başarılı bir şekilde değiştirildi";
+
+
     }
 }
